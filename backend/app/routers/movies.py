@@ -89,6 +89,20 @@ def movies_stats(db: Session = Depends(get_db)) -> MovieStats:
     )
 
 
+@router.get("/upcoming", response_model=list[MovieRead])
+def upcoming_movies(
+    limit: int = Query(default=10, ge=1, le=100),
+    db: Session = Depends(get_db),
+) -> list[Movie]:
+    query = (
+        select(Movie)
+        .where(Movie.next_release_date.is_not(None))
+        .order_by(Movie.next_release_date.asc(), Movie.id.asc())
+        .limit(limit)
+    )
+    return list(db.scalars(query).all())
+
+
 @router.get("/{movie_id}", response_model=MovieRead)
 def get_movie(movie_id: int, db: Session = Depends(get_db)) -> Movie:
     movie = db.get(Movie, movie_id)
