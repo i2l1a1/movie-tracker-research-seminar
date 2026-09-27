@@ -21,7 +21,7 @@ docker compose up --build
 
 ## Тесты
 
-Запустить приложение: `docker compose up --build`:
+Запустить приложение: `docker compose up --build`
 
 Выполнить для прогона тестов:
 
