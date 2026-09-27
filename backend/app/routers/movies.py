@@ -29,6 +29,7 @@ def _apply_rating_rules(
 def list_movies(
     status_filter: MovieStatus | None = Query(default=None, alias="status"),
     type_filter: MovieType | None = Query(default=None, alias="type"),
+    q: str | None = Query(default=None, min_length=1, max_length=255),
     db: Session = Depends(get_db),
 ) -> list[Movie]:
     query = select(Movie).order_by(Movie.id)
@@ -36,6 +37,8 @@ def list_movies(
         query = query.where(Movie.status == status_filter)
     if type_filter is not None:
         query = query.where(Movie.type == type_filter)
+    if q is not None:
+        query = query.where(Movie.title.ilike(f"%{q}%"))
     return list(db.scalars(query).all())
 
 
