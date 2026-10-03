@@ -3,6 +3,7 @@ from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from app.models import MovieStatus, MovieType
+from app.rules import resolve_rating
 
 
 class MovieCreate(BaseModel):
@@ -14,8 +15,7 @@ class MovieCreate(BaseModel):
 
     @model_validator(mode="after")
     def validate_rating_for_status(self) -> "MovieCreate":
-        if self.status == MovieStatus.planned and self.rating is not None:
-            raise ValueError("rating is only allowed when status is watched")
+        resolve_rating(self.status, self.rating, rating_provided=True)
         return self
 
 
@@ -27,6 +27,12 @@ class MovieUpdate(BaseModel):
     next_release_date: date | None = None
 
     model_config = ConfigDict(extra="forbid")
+
+    @model_validator(mode="after")
+    def validate_rating_for_status(self) -> "MovieUpdate":
+        if self.status == MovieStatus.planned and self.rating is not None:
+            resolve_rating(self.status, self.rating, rating_provided=True)
+        return self
 
 
 class MovieRead(BaseModel):
