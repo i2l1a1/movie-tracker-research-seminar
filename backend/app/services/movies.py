@@ -19,12 +19,12 @@ class MovieService:
         q: str | None = None,
     ) -> list[Movie]:
         query = select(Movie).order_by(Movie.id)
-        if status_filter is not None:
-            query = query.where(Movie.status == status_filter)
-        if type_filter is not None:
-            query = query.where(Movie.type == type_filter)
-        if q is not None:
-            query = query.where(Movie.title.ilike(f"%{q}%"))
+        query = self._apply_common_filters(
+            query,
+            status_filter=status_filter,
+            type_filter=type_filter,
+            q=q,
+        )
         return list(self._db.scalars(query).all())
 
     def get(self, movie_id: int) -> Movie:
@@ -104,14 +104,43 @@ class MovieService:
             average_rating=round(float(average), 2) if average is not None else None,
         )
 
-    def upcoming(self, *, limit: int = 10) -> list[Movie]:
+    def upcoming(
+        self,
+        *,
+        limit: int = 10,
+        status_filter: MovieStatus | None = None,
+        type_filter: MovieType | None = None,
+        q: str | None = None,
+    ) -> list[Movie]:
         query = (
             select(Movie)
             .where(Movie.next_release_date.is_not(None))
             .order_by(Movie.next_release_date.asc(), Movie.id.asc())
-            .limit(limit)
         )
+        query = self._apply_common_filters(
+            query,
+            status_filter=status_filter,
+            type_filter=type_filter,
+            q=q,
+        )
+        query = query.limit(limit)
         return list(self._db.scalars(query).all())
+
+    def _apply_common_filters(
+        self,
+        query,
+        *,
+        status_filter: MovieStatus | None,
+        type_filter: MovieType | None,
+        q: str | None,
+    ):
+        if status_filter is not None:
+            query = query.where(Movie.status == status_filter)
+        if type_filter is not None:
+            query = query.where(Movie.type == type_filter)
+        if q is not None:
+            query = query.where(Movie.title.ilike(f"%{q}%"))
+        return query
 
     def _require_movie(self, movie_id: int) -> Movie:
         movie = self._db.get(Movie, movie_id)

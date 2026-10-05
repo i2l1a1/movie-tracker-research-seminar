@@ -193,3 +193,11 @@ def test_upcoming(client):
     assert limited.status_code == 200
     assert len(limited.json()) == 1
     assert limited.json()[0]["title"] == "Soon"
+
+    by_type = client.get("/movies/upcoming", params={"type": "movie"})
+    assert by_type.status_code == 200
+    assert [item["title"] for item in by_type.json()] == ["Soon"]
+
+    by_q = client.get("/movies/upcoming", params={"q": "lat"})
+    assert by_q.status_code == 200
+    assert [item["title"] for item in by_q.json()] == ["Later"]

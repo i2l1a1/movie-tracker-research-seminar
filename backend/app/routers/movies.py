@@ -39,9 +39,17 @@ def movies_stats(service: MovieService = Depends(provide_movie_service)) -> Movi
 @router.get("/upcoming", response_model=list[MovieRead])
 def upcoming_movies(
     limit: int = Query(default=10, ge=1, le=100),
+    status_filter: MovieStatus | None = Query(default=None, alias="status"),
+    type_filter: MovieType | None = Query(default=None, alias="type"),
+    q: str | None = Query(default=None, min_length=1, max_length=255),
     service: MovieService = Depends(provide_movie_service),
 ) -> list[Movie]:
-    return service.upcoming(limit=limit)
+    return service.upcoming(
+        limit=limit,
+        status_filter=status_filter,
+        type_filter=type_filter,
+        q=q,
+    )
 
 
 @router.get("/{movie_id}", response_model=MovieRead)
