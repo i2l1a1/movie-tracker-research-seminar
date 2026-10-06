@@ -82,7 +82,7 @@ export function MovieFormModal({
                     <input
                         value={values.title}
                         onChange={(event) => updateField('title', event.target.value)}
-                        className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 focus:ring-2"
+                        className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 text-cream outline-none ring-gold/40 focus:ring-2"
                     />
                     {errors.title ? (
                         <span className="mt-1 block text-xs text-danger">{errors.title}</span>
@@ -97,7 +97,7 @@ export function MovieFormModal({
                             onChange={(event) =>
                                 updateField('type', event.target.value as MovieFormValues['type'])
                             }
-                            className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 focus:ring-2"
+                            className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 text-cream outline-none ring-gold/40 focus:ring-2"
                         >
                             <option value="movie">Movie</option>
                             <option value="series">Series</option>
@@ -113,7 +113,7 @@ export function MovieFormModal({
                                     event.target.value as MovieFormValues['status'],
                                 )
                             }
-                            className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 focus:ring-2"
+                            className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 text-cream outline-none ring-gold/40 focus:ring-2"
                         >
                             <option value="planned">Planned</option>
                             <option value="watched">Watched</option>
@@ -130,7 +130,7 @@ export function MovieFormModal({
                         value={values.rating}
                         disabled={values.status !== 'watched'}
                         onChange={(event) => updateField('rating', event.target.value)}
-                        className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 focus:ring-2 disabled:opacity-50"
+                        className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 text-cream outline-none ring-gold/40 focus:ring-2 disabled:opacity-50"
                     />
                     {errors.rating ? (
                         <span className="mt-1 block text-xs text-danger">{errors.rating}</span>
@@ -145,7 +145,7 @@ export function MovieFormModal({
                         onChange={(event) =>
                             updateField('next_release_date', event.target.value)
                         }
-                        className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 focus:ring-2"
+                        className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 text-cream outline-none ring-gold/40 focus:ring-2"
                     />
                     {errors.next_release_date ? (
                         <span className="mt-1 block text-xs text-danger">

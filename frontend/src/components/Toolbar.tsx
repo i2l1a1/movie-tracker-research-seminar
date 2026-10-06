@@ -25,8 +25,8 @@ export function Toolbar({
                     <input
                         value={q}
                         onChange={(event) => onQChange(event.target.value)}
-                        placeholder="Title substring"
-                        className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 placeholder:text-muted/70 focus:ring-2"
+                        placeholder="Title"
+                        className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 outline-none ring-gold/40 placeholder:text-muted/70 focus:ring-2"
                     />
                 </label>
                 <label className="block text-left text-sm">
@@ -34,7 +34,7 @@ export function Toolbar({
                     <select
                         value={status}
                         onChange={(event) => onStatusChange(event.target.value as '' | MovieStatus)}
-                        className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 focus:ring-2"
+                        className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 text-cream outline-none ring-gold/40 focus:ring-2"
                     >
                         <option value="">All</option>
                         <option value="watched">Watched</option>
@@ -46,7 +46,7 @@ export function Toolbar({
                     <select
                         value={type}
                         onChange={(event) => onTypeChange(event.target.value as '' | MovieType)}
-                        className="w-full rounded-lg border border-line bg-stage px-3 py-2 text-cream outline-none ring-gold/40 focus:ring-2"
+                        className="box-border h-10 w-full rounded-lg border border-line bg-stage px-3 text-cream outline-none ring-gold/40 focus:ring-2"
                     >
                         <option value="">All</option>
                         <option value="movie">Movie</option>
