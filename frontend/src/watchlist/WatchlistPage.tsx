@@ -141,7 +141,7 @@ export function WatchlistPage() {
                     }}
                     className="shrink-0 rounded-lg bg-gold px-4 py-2.5 font-medium text-ink transition hover:bg-gold-soft"
                 >
-                    Add film or series
+                    Add movie or series
                 </button>
             </header>
 

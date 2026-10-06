@@ -73,7 +73,7 @@ export function MovieFormModal({
     return (
         <Modal
             open={open}
-            title={movie ? 'Edit film or series' : 'Add film or series'}
+            title={movie ? 'Edit movie or series' : 'Add movie or series'}
             onClose={onClose}
         >
             <form className="space-y-3 text-left" onSubmit={handleSubmit}>
