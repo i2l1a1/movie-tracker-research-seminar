@@ -21,16 +21,7 @@ export function Modal({ open, title, children, onClose }: Props) {
                 onClick={onClose}
             />
             <div className="relative z-10 w-full max-w-lg rounded-xl border border-line bg-panel p-5 shadow-2xl sm:p-6">
-                <div className="mb-4 flex items-start justify-between gap-3">
-                    <h2 className="font-display text-xl font-semibold text-cream">{title}</h2>
-                    <button
-                        type="button"
-                        onClick={onClose}
-                        className="rounded-md px-2 py-1 text-muted transition hover:bg-panel-hover hover:text-cream"
-                    >
-                        Close
-                    </button>
-                </div>
+                <h2 className="mb-4 font-display text-xl font-semibold text-cream">{title}</h2>
                 {children}
             </div>
         </div>
