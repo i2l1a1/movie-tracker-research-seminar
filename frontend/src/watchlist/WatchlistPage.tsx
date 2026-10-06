@@ -128,10 +128,21 @@ export function WatchlistPage() {
 
     return (
         <div className="mx-auto min-h-svh w-full max-w-6xl px-4 py-8 sm:px-6">
-            <header className="mb-8 text-left">
+            <header className="mb-8 flex flex-col gap-4 text-left sm:flex-row sm:items-center sm:justify-between">
                 <h1 className="font-display text-3xl font-semibold text-cream sm:text-4xl">
                     My watchlist
                 </h1>
+                <button
+                    type="button"
+                    onClick={() => {
+                        setEditing(null)
+                        setFormError(null)
+                        setFormOpen(true)
+                    }}
+                    className="shrink-0 rounded-lg bg-gold px-4 py-2.5 font-medium text-ink transition hover:bg-gold-soft"
+                >
+                    Add film or series
+                </button>
             </header>
 
             <div className="space-y-5">
@@ -144,11 +155,6 @@ export function WatchlistPage() {
                     onQChange={setQ}
                     onStatusChange={setStatus}
                     onTypeChange={setType}
-                    onAdd={() => {
-                        setEditing(null)
-                        setFormError(null)
-                        setFormOpen(true)
-                    }}
                 />
 
                 {error ? (

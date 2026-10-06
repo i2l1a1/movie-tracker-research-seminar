@@ -7,7 +7,6 @@ type Props = {
     onQChange: (value: string) => void
     onStatusChange: (value: '' | MovieStatus) => void
     onTypeChange: (value: '' | MovieType) => void
-    onAdd: () => void
 }
 
 export function Toolbar({
@@ -17,11 +16,10 @@ export function Toolbar({
     onQChange,
     onStatusChange,
     onTypeChange,
-    onAdd,
 }: Props) {
     return (
-        <section className="flex flex-col gap-3 rounded-xl border border-line bg-panel p-4 lg:flex-row lg:items-end lg:justify-between">
-            <div className="grid flex-1 gap-3 sm:grid-cols-3">
+        <section className="rounded-xl border border-line bg-panel p-4">
+            <div className="grid gap-3 sm:grid-cols-3">
                 <label className="block text-left text-sm">
                     <span className="mb-1 block text-muted">Search</span>
                     <input
@@ -56,13 +54,6 @@ export function Toolbar({
                     </select>
                 </label>
             </div>
-            <button
-                type="button"
-                onClick={onAdd}
-                className="rounded-lg bg-gold px-4 py-2.5 font-medium text-ink transition hover:bg-gold-soft"
-            >
-                Add title
-            </button>
         </section>
     )
 }
