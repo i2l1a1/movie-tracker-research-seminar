@@ -35,3 +35,12 @@ body {
     color: var(--color-cream);
     background: var(--color-ink);
 }
+
+button:not(:disabled),
+a {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
