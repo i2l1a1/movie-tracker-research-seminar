@@ -8,6 +8,12 @@ Movie Tracker - это приложение, которое помогает в�
 в приложение и добавлена возможность указать дату выхода следующей
 части или следующего сезона.
 
+## Интерфейс
+
+<img src="screenshots/demo-screenshot.png" alt="demo-screenshot.png" />
+
+[Здесь](https://drive.google.com/file/d/1L8Ha_ZvfGQu6hI7-guBoNnnztTp74sFA/view?usp=sharing) можно посмотреть демонстрационное видео.
+
 ## Возможности
 
 - Добавление, редактирование и удаление фильмов и сериалов
